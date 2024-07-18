@@ -1,0 +1,304 @@
+import telebot
+from telebot import types
+from main import TOKEN
+
+markup = types.InlineKeyboardMarkup()
+btn1 = types.InlineKeyboardButton('Траппер (Охотник)', callback_data='trap')
+btn2 = types.InlineKeyboardButton('Призрак', callback_data='din')
+btn3 = types.InlineKeyboardButton('Биляс (Деревенщина)', callback_data='billy')
+btn4 = types.InlineKeyboardButton('Нюрса (Медсестра)', callback_data='nurse')
+btn5 = types.InlineKeyboardButton('Анна (Охотница)', callback_data='ann')
+btn6 = types.InlineKeyboardButton('Хага (Ведьма)', callback_data='haga')
+btn7 = types.InlineKeyboardButton('Доктор', callback_data='doctor')
+btn8 = types.InlineKeyboardButton('Бубба (Каннибал)', callback_data='bubba')
+btn9 = types.InlineKeyboardButton('Майкл Маерс (Тень)', callback_data='Mike')
+btn10 = types.InlineKeyboardButton('Фредди Крюггер (Кошмар)', callback_data='freddy')
+btn11 = types.InlineKeyboardButton('Свинка', callback_data='pig')
+btn12 = types.InlineKeyboardButton('Клоун', callback_data='clown')
+btn13 = types.InlineKeyboardButton('Рин (Дух)', callback_data='rin')
+btn14 = types.InlineKeyboardButton('ЛЕГИОН ВПЕРЁД', callback_data='legion')
+btn15 = types.InlineKeyboardButton('Чума', callback_data='chuma')
+btn16 = types.InlineKeyboardButton('Гост Фейс', callback_data='scream')
+btn17 = types.InlineKeyboardButton('Демогоргон', callback_data='dima')
+btn18 = types.InlineKeyboardButton('Они', callback_data='oni')
+btn19 = types.InlineKeyboardButton('Стрелок', callback_data='shoot')
+btn20 = types.InlineKeyboardButton('Палач (Пирамида)', callback_data='piramid')
+btn21 = types.InlineKeyboardButton('Мор', callback_data='mor')
+btn22 = types.InlineKeyboardButton('Близнецы', callback_data='twins')
+btn23 = types.InlineKeyboardButton('Трюкач (Мой бой)', callback_data='trick')
+btn24 = types.InlineKeyboardButton('Немезис', callback_data='nemesis')
+btn25 = types.InlineKeyboardButton('Сенобит', callback_data='senobit')
+btn26 = types.InlineKeyboardButton('Художница', callback_data='paint')
+btn27 = types.InlineKeyboardButton('Онрё', callback_data='call')
+btn28 = types.InlineKeyboardButton('Грязь', callback_data='dirty')
+btn29 = types.InlineKeyboardButton('Альберт Вескер (Куколдовод)', callback_data='kukla')
+btn30 = types.InlineKeyboardButton('Рыцарь', callback_data='ricar')
+btn31 = types.InlineKeyboardButton('Торговка Черепами', callback_data='woman')
+btn32 = types.InlineKeyboardButton('Сингулярность', callback_data='singular')
+btn33 = types.InlineKeyboardButton('Чужой (Ксеноморф)', callback_data='hvost')
+btn34 = types.InlineKeyboardButton('Чаки (Хороший парень)', callback_data='goodb')
+btn35 = types.InlineKeyboardButton('Неведомое', callback_data='another')
+btn36 = types.InlineKeyboardButton('Лич', callback_data='lich')
+
+markup.row(btn1, btn2, btn3)
+markup.row(btn4, btn5, btn6)
+markup.row(btn7, btn8, btn9)
+markup.row(btn10, btn11, btn12)
+markup.row(btn13, btn14, btn15)
+markup.row(btn16, btn17, btn18)
+markup.row(btn19, btn20, btn21)
+markup.row(btn22, btn23, btn24)
+markup.row(btn25, btn26, btn27)
+markup.row(btn28, btn29, btn30)
+markup.row(btn31, btn32, btn33)
+markup.row(btn34, btn35, btn36)
+
+
+def main():
+    bot = telebot.TeleBot(TOKEN)
+
+    @bot.message_handler(commands=['start'])
+    def starting(message):
+        bot.send_message(message.chat.id, 'Выбери ханта', reply_markup=markup)
+        if message.message_id==0:
+            bot.delete_message(message.chat.id, message.message_id)
+        elif message.message_id<0:
+            pass
+        elif message.message_id==1:
+            bot.delete_message(message.chat.id, message.message_id)
+            bot.delete_message(message.chat.id, message.message_id-1)
+        else:
+            bot.delete_message(message.chat.id, message.message_id)
+            bot.delete_message(message.chat.id, message.message_id - 1)
+            bot.delete_message(message.chat.id, message.message_id - 2)
+
+
+
+    @bot.callback_query_handler(func = lambda callback: True)
+    def callback_message(callback):
+        if callback.data == 'trap':
+            bot.send_message(callback.message.chat.id, 'Ставит по карте капканы, зачастую в окна и палеты. Капканы можно обезвредить. Если Траппер ударит сурва в капкане, тот сразу нокнется. Вырываясь из капкана, выживший становится раненым. Нельзя оставлять треугольник.')
+            file = open('pics/Trapper.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'din':
+            file = open('pics/din.jpg', 'rb')
+            bot.send_message(callback.message.chat.id, 'Входит в невидимость, в которой у него нет террора и его почти не видно. Он не может в  ней хитовать, но может взаимодействовать с объектами. Для контры надо всегда оглядываться, чтобы вовремя его заметить на подходе и отбежать, можно добежать до СЕЙВ окна и прыгать в нём, пока он не выйдет из инвиза, потом убегать, или добежать до палеты и не скидывать её, пока он не выйдет из инвиза. Это делается чтобы выиграть время, тк в инвизе он быстрый, и может закрыть на перетяжке. После выхода из инвиза он получает ускорение, во время самой анимации выхода наоборот замедлен.')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'billy':
+            file = open('pics/billy.jpg', 'rb')
+            bot.send_message(callback.message.chat.id, 'При юзе бензопилы летает на огромной скорости, но имеет очень низкую сенсу. После нескольких заводов пила перегревается и входит в овердрайв, в котором она заводится ещё быстрее, скорость биляса становится ещё больше, и анимация стана после врезания становится короче. Палеты ломает, если врежется в них на пиле.')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'nurse':
+            file = open('pics/nurse.jpg', 'rb')
+            bot.send_message(callback.message.chat.id, 'Имеет 2 блинка, один длинный, другой покороче. На них она пролетает сквозь все стены, после блинка у неё есть небольшой промежуток времени чтобы дать хит, после этого её замедляет на 2 секунды. Стандартная скорость ходьбы нюрсы как у сурва. Мансится на фейках.')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'ann':
+            bot.send_message(callback.message.chat.id, 'Имеет 7 топоров, перезаряжает их в шкафчиках. Топоры кидает и наносит хит при попадании. Кидают чаще всего в палетах и окнах, когда достаёт топор замедляется до скорости сурва.')
+            file = open('pics/ann.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'haga':
+            bot.send_message(callback.message.chat.id, 'Расставляет ловушки, которые выглядят как нарисованные на земле треугольники. Если сурв проходит рядом, ловушка триггерится и из неё выскакивает фейк ведьма, на которую может телепортироваться настоящая. Если подойти на ctrl, ловушка не сработает и её можно будет стереть.' )
+            file = open('pics/haga.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'doctor':
+            bot.send_message(callback.message.chat.id, 'Бьет током, есть сильный разряд который повышает всем в радиусе террора уровень безумия на 1, есть ток послабее, который он даёт на пару метров перед собой и поражённому выжившему не даёт взаимодействовать с объектами. Всего 3 уровня безумия, на 3ем нельзя чинить и хилить, надо сделать действие "Прийти в себя".' )
+            file = open('pics/doctor.jpg.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'bubba':
+            bot.send_message(callback.message.chat.id,'Имеет бензопилу, в которой есть 3 стака. Расходуя их, может продлевать действие бензопилы до примерно секунд 8. Удар бензопилой = смерть. При врезании в палету ест её, в другие объекты впадает в бешенство и ловит стан. Можно контрить тупым палетспамом, окнами и запрыгивая в шкафчик в экстренной ситуации.',)
+            file = open('pics/bubba.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'Mike':
+            bot.send_message(callback.message.chat.id,'Копит стадии зла наблюдая за сурвами. На первой стадии медленный и без террора, на 3ей быстрый и все сурвы под уязвимостью. 3я стадия длится 80 сек +-',)
+            file = open('pics/mike.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'freddy':
+            bot.send_message(callback.message.chat.id,'Все сурвы на карте постепенно засыпают. Чтобы проснуться, сурвы могут будить друг друга или находить будильник на карте(подсвечен). Кошмар в мире снов не имеет террора и может расставлять ловушки, замедляющие сурвов, или делать фейк палеты на месте сломанных. Кошмар может тепаться на машинки, из них при тп льется кровь. Кошмар может отменить тп.')
+            file = open('pics/freddy.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'pig':
+            bot.send_message(callback.message.chat.id,'Может присесть, в этом состоянии не имеет террора. Из приседа может сделать рывок, при котором громко рычит,а после в течение 3-4 секунд быстро бежит. Имеет 4 обратных медвежьих капкана, которые может надеть на нокнутого выжившего. Капканы активируются при заводе любого генератора. Чтобы снять их, нужно найти ключ в одной из коробок(подсвечены белым). Выйти в ворота с активным капканом нельзя.')
+            file = open('pics/pig.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'clown':
+            bot.send_message(callback.message.chat.id,'Имеет 5 бутылок тоника, фиолетового и жёлтого. Бросает их, на месте их падения распыляется газ, который размывает камеру и понижает скорость сурва при его отравлении(фиолетовый тоник). Жёлтый газ накладывает спешку на вдохнувшего его(спешка- +% к скорости). Бутылки перзаряжает сам, при этом замедляется.')
+            file = open('pics/clown.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'rin':
+            bot.send_message(callback.message.chat.id,'Входит в иное измерение, в котором не видит сурвов, но слышит их и видит следы. В другом измерении передвигается быстрее, выходит без кд, если она рядом с тобой в другом измерении, слышен характерный звук, похожий на громкое шипение. В моменте, когда входит в другой мир, встаёт на месте, так же в том месте на некоторое время остаётся её оболочка.')
+            file = open('pics/rin.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'legion':
+            bot.send_message(callback.message.chat.id,'ЛЕГИОН ЛЮТАЯ ИМБА БЕЖИТ ВПЕРЕД ХИТУЕТ ВСЁ ЧТО ВИДИТ И НАКЛАДЫВАЕТ ГЛУБОКУЮ РАНУ НА ВСЕХ СВОИХ ЖЕРТВ. Выходит из абилки при промахе ударом, по собственному желанию или по её истечению(20 сек по дефолту).  Обилка полностью заряжается после каждого хита по сурву, также после хита ему подсвечивает всех сурвов в радиусе его террора. В бешенстве может прыгать через палеты и быстро прыгать в окно. При 4ёх хитах в одной абилке 5ый хит нокнет сурва. Глубокая рана прогрессирует, если сурв не бегает с шифтом, её шкалу видно возле хп, чтобы снять её надо подлататься. ЛЕГИОН ВПЕРЕД')
+            file = open('pics/legion.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'chuma':
+            bot.send_message(callback.message.chat.id, 'Блюет на окна, палеты, гены, шкафы, и сурвов. Взаимодействие с чем-то заражённым-заражаешься. Заражён и взаимодействуешь с чем-то незаражённым-заражаешь. Болезнь прогрессирует, на максильном заражении сурв становится хитованным без возможности прохилиться. Для того чтобы снять болезнь и хит надо омыться в фонтане(подсвечены белым). Из заражённого фонтана чума может вобрать скверну, и 60 сек её блевота будет сразу давать хит.')
+            file = open('pics/chuma.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'scream':
+            bot.send_message(callback.message.chat.id, 'Может приседать. Ни на что не влияет, просто мемно. Входит в состояние незаметности, в котором у него нет террора, и он может ставить метки на сурвов, накладывая этим на них уязвимость. Чтобы вывести его из состояния незаметности, надо пару секунд смотреть на него. Выжившие с меткой вывести его из состояния незаметности не могут.')
+            file = open('pics/scream.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'dima':
+            bot.send_message(callback.message.chat.id, 'Расставляет порталы по карте, но выжившие могут их запечатывать. Имеет рывок, его подготовку можно узнать по тому, что он открывает свою бошку-цветок. Врезаясь в палеты рывком ломает их. Привыходе из портала имеет незаметность несколько секунд.')
+            file = open('pics/dima.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'oni':
+            bot.send_message(callback.message.chat.id, 'Заряжает свою обилку, всасывая кровь сурвов. За хит по фуллл хп сурву получает сразу +40% к обилке. Раненые сурвы оставляют шарики крови, которые он в последствии может собрать. Активные действия - прыжки, скидывания палет, оставляют после себя шарики. Обилка длится в районе 60 секунд, в ней получает рывок, в котором он быстро перемещается, имеет уменьшенную сенсу, может делать движения вправо/влево. Все хиты в обилке, в рывке или просто, ломают палеты и нокают с одного хита. Каждый нок в обилке сразу истощает её длительность на примено 40%. При входе в обилку кричит на всю карту.')
+            file = open('pics/oni.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'shoot':
+            bot.send_message(callback.message.chat.id, 'Стреляет из гарпунного ружья, гарпуном тянет сурва к себе. Чтобы сорваться к крюка, необходимо зайти за стену,пока тебя притягивают(двигаться вправо/влево). При срыве с гарпуна сурв получает ранение+глубокую рану, при первом хите тоже. Второй хит нокает, но не второй срыв. После каждого выстрела замедляется, после срыва с гарпуна станится на 2 сек.')
+            file = open('pics/shoot.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'piramid':
+            bot.send_message(callback.message.chat.id, 'Втыкая свой меч в землю оставляет на месте, где проходит, борозды. При походе по ним не на ctrl выживший выдает своё местоположение ханту и получает эффект страдания. Выжившего со страданиями палач может отправить в клетку искупления вместо повеса на крюк, и сразу убить на последней стадии. Пока меч в земле, палач может выпустить перед собой на несколько метров борозду, проходящую через стены. Если борозда пройдет под сурвом, тот получит хит. Чтобы избавиться от эффекта страданий, выживший должен спасти другого выжившего из клетки.')
+            file = open('pics/piramid.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'mor':
+            bot.send_message(callback.message.chat.id, 'Имеет 5 жетонов. Первый жетон-Мор бежит вперед, имея слабую сенсу, пока не врежется в любую текстуру. После столкновения имеет пару секунд, чтобы потратить второй жетон и побежать дальше. Второй и все последующие ускорения обладают теми же свойствами, что и первый, но в них он может нанести хит. Рывки можно начать только при полностью откдшенных жетонах. После окончания бега получает стан на 2.5 секунд.')
+            file = open('pics/mor.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'twins':
+            bot.send_message(callback.message.chat.id, 'Марта и Виктор-Марта большая, Виктор в ней. Марта выпускает из себя Виктора, у того нет террора, но он громко кряхтит. Виктор может сделать бросок, попадая в сурва нанося ему урон, и если сурв не нокнулся, садясь ему на спину. Сурв с Виктором не может чинить, имеет ослабление, может сделать дейтвие "Скинуть Виктора". После скидывания Виктор умирает и через некоторое время снова появляется у Марты. Управляя Виктором тело Марты не имеет террора, управляя Мартой, выпущенный Виктор не издаёт звуков. Неуправляемого Виктора можно убить, как и Виктора, который промазал рывком. ')
+            file = open('pics/twins.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'trick':
+            bot.send_message(callback.message.chat.id, 'Имеет 44 ножа, перезаряжает их в шкафчиках. При метании замедлется до скорости сурва. После 8 попаданий ножами наносит сурву урон. 8 попаданий ножей заряжает Трюкачу "Кульминацию". В кульминации трюкач бросает ножи с большей скоростью, не расходуя личный запас. По окончании Кульминации получает небольшой стан. Накопление ножей на сурве падает, если тот некоторое время не ловит их. Если shift не зажат, это происходит быстрее.')
+            file = open('pics/trickster.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'nemesis':
+            bot.send_message(callback.message.chat.id,'Имеет щупальце, у которого есть 3 стадии. Атакуя выживших щупальцем, заражает их и повышает стадию щупальца. Атакуя щупальцем заражённых выживших, наносит урон, и повышает стадию щупальца, но на меньший процент. С повышением стадии длина щупальца вырастает, а также с 2ого уровня Немезис может ломать палеты щупальцем. Законтрить удар можно присев, так же по карте есть ящики с антидотом от заражения. На карте есть 2 зомби, медленно передвигающихся. Их удары работают по логике щупальца, стадию их хиты не повышают. Их можно застанить на 15 секунд, ослепив фонариком, или убить, застанив палетой. Со временем зомби респавнятся.')
+            file = open('pics/nemesis.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'senobit':
+            bot.send_message(callback.message.chat.id, 'Делает портал, из которого выпускает управляемую им цепь. Попадая цепью, окутывает сурва 4мя цепьми, которые замедляют сурва и не дают ему делать быстрые прыжки. Чтобы скинуть цепи можно сделать соответсвующее действие или разорвать их, зайдя за стену. Кроме того, со временем за всеми сурвами начинается цепная охота. Во время охоты рядом с сурвами периодически открываются порталы, из который вылетает по одной цепи. Чтобы остановить охоту, выжившие могут найти на карте шкатулку и разгадать её(подсвечена белым). Сенобит может телепортироваться к сурву, разгадывающему шкатулку.')
+            file = open('pics/senobit.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'paint':
+            bot.send_message(callback.message.chat.id, 'Имеет 3ёх ворон, которых может установитьв определенном направлении и пустить вперед в полёт. Вороны пролетают через всю карту и подсвечивают ханту сурвов, мимо которых они пролетели, или садятся на сурвов при столкновении с ними. Повторное попадание вороной по сурву с воронами на нём нанесёт ему хит. Ворон можно прогнать соответствующим действием(можно на бегу) или запрыгнув в шкаф. Если вороны врезаются в сурва в первые 3 метра полёта, не проходя ни через какие препятствия, они сразу наносят хит.')
+            file = open('pics/paint.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'call':
+            bot.send_message(callback.message.chat.id, 'Имеет развоплощенное и воплощенное состояния. Воплощенное состояние не имеет никаких особенностей. В развоплощённом состоянии Онрё не имеет террора, и периодически мерцает, из-за чего её плохо видно. Хитовать в развоплощённом состоянии она не может, но процесс воплощения никак её не замедляет. В развоплощённом состоянии она может сделать тп на телевизоры, которые расположены по всей карте. Выходя из телевизора, она воплощается, накладывая Обреченность на сурвов вблизи от телевизора, и получает ускорение на 1.5 сек. Сурвов с максимальным уровнем Обречённости Онрё может сразу замементить. Чтобы уменьшить уровень обреченности сурву надо достать кассету из телевизора и отнести её в другой телик(подсвечен).')
+            file = open('pics/call.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'dirty':
+            bot.send_message(callback.message.chat.id, 'Может телепортироваться в шкафы. На шкафах есть одноразовые задвижки, которые замедлят выход грязи. Грязь может сломать задвинутые задвижки хитом по ним. На карте со временем наступает ночь, во время которой Грязь не имеет террора, и тепается к шкафчикам гораздо быстрее. Во время чейза может оставить свою оболочку и лететь за сурвом(замедленно), имея возможность воплотиться или тепнуться на оболочку без анимаций. Если коснуться оболочки, она исчезнет.')
+            file = open('pics/dirty.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'kukla':
+            bot.send_message(callback.message.chat.id, 'Имеет 2 рывка, первый покороче, второй подлиннее. Во время рывка может схватить сурва, после чего сделает небольшой рывок вместе с ним. Если в этот момент они влетят в текстуру, Вескер впечатает сурва и нанесёт ему хит. В противном случае он швырнет сурва, и если тот врежатся во что-то, то тоже получит урон. Захват сурва накладывает на него заражение/прогрессирует его. Полностью зараженного сурва при захвате рывком он сразу кладёт на плечо. На карте есть инъекции от заражения.')
+            file = open('pics/kukla.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'ricar':
+            bot.send_message(callback.message.chat.id, 'Имеет 3 стражников, призываемых по очереди(с разными особенностями), которых может использовать для приказа повредить/сломать что-то или патрулировать зону. При входе сурвом в зону стрвжника тот орёт и начинает погоню. через некоторое время в месте начала погони появится флаг, который может поднять любой сурв чтобы закончить погоню, или она кончится со временем.')
+            file = open('pics/ricar.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'woman':
+            bot.send_message(callback.message.chat.id, 'Ставит дроны, которые сканируют зону вокруг себя. При обнаружении сурва дают инфу ханту и накладывают на сурва Электрозахват. Если сурв не сломает дрона, Электрозахват на нём спрогрессирует и наложит слабость, а также будет давать постоянную инфу о местоположении сурва.')
+            file = open('pics/woman.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'singular':
+            bot.send_message(callback.message.chat.id, 'Расставляет на стенах камеры, которые может открывать с любого расстояния. Через камеры может наблюдать за сурвами в течение 1.5 сек, оставляя на них "Воздушный след", который передается между сурвами, находящимися близко друг к другу. На сурвов с воздушным следом Сингулярность может тепнуться чере камеру или сам, глядя на сурва. При тп входит в  Разгон. В этом состоянии он быстрее прыгает в окно и ломает палеты, а скинутые на него палеты сами ломаются, не станя его, а только замедляя. Камеры можно ломать на некоторое время, а воздушные следы уничтожать при помощи ЭМИ, которая спавнится в язиках(подсвечено белым). Сурвы могут ускорить спавн, подойдя к ящику и взаимодействуя с ним.')
+            file = open('pics/singular.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'hvost':
+            bot.send_message(callback.message.chat.id, 'Имеет туннели по всей карте. Постепенно накапливает состояние Хищник, в котором встаёт на четвереньки и может бить хвостом над текстурами. Над выходами из туннеля сурвы могут брать турели. Турели жгут Чужого, выводя его из состояния Хищника и замедляя. Чужой может сломать турели до того, как те сожгут его.')
+            file = open('pics/hvost.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'goodb':
+            bot.send_message(callback.message.chat.id, 'Входит в состояние "Живчик", в котором сам Чаки не обладает радиусом террора, все сурвы слышат шаги вокруг себя и видят следы. В состоянии Живчик Чаки может совершить рывок, и на большой скорости побежать на сурва.')
+            file = open('pics/goodb.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'another':
+            bot.send_message(callback.message.chat.id,'Стреляет из пуза снаряд и заражает выжившего на некоторое время. Следущее попадание зарядом нанесёт хит. Оставляет после себя свои оболочки, на которые может тепаться. Их можно сказать.')
+            file = open('pics/another.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        elif callback.data == 'lich':
+            bot.send_message(callback.message.chat.id,'Имеет 4 способности:\n1. Сфера. Пускает в полёт через всю карту сферу, которая подсвечивает сурвов, которых задевает, и отключает их особые предметы. Сфера видна сурвам.\n2. Рука. Может придержать палету от скидывания на пару секунд или поднять скинутую.\n3. Полёт. Летит на большой скорости, может пролетать над палетами и через окна, не наносит урон.\n4. Скелеты. Отправляет скелетов, которые летят чуть выше земли по прямой некоторое расстояние. Наносят урон, если пройдут по сурву. Можно законтрить, присев.\nВСЕ ОБИЛКИ ИМЕЮТ КД 40 СЕК.\nОсобые предметы сурвов: на карте появляются сундуки(подсвечены белым), из которых можно достать особые предметы, не занимающие ящейку основного предмета, и помогающие в борьбе с Личом.')
+            file = open('pics/lich.jpg', 'rb')
+            bot.send_photo(callback.message.chat.id, file)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+        else:
+            bot.send_message(callback.message.chat.id, 'wtf?')
+            bot.delete_message(callback.message.chat.id, callback.message.message_id)
+
+
+
+    bot.polling(none_stop=True)
+
+if __name__ == '__main__':
+    main()
