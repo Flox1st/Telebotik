@@ -62,8 +62,6 @@ def main():
         bot.send_message(message.chat.id, 'Выбери ханта', reply_markup=markup)
         if message.message_id==0:
             bot.delete_message(message.chat.id, message.message_id)
-        elif message.message_id<0:
-            pass
         elif message.message_id==1:
             bot.delete_message(message.chat.id, message.message_id)
             bot.delete_message(message.chat.id, message.message_id-1)
